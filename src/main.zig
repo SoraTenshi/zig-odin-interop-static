@@ -13,6 +13,7 @@ const Arithmetic = extern struct {
 extern fn print_some_info(something: SomeInfo) void;
 extern fn add_stuff(lhs: usize, rhs: usize) usize;
 extern fn do_arithmetic(a: Arithmetic) usize;
+extern fn sincos(x: f32) callconv(.C) extern struct { sin: f32, cos: f32 };
 
 pub fn main() !void {
     const something = SomeInfo{
@@ -26,5 +27,6 @@ pub fn main() !void {
     print_some_info(something);
     try writer.print("Odin adds: {d} + {d} to {d}\n", .{ 1337, 666, add_stuff(1337, 666) });
     try writer.print("Odin arithmetic: {d} * {d} to {d}\n", .{ 10, 10, do_arithmetic(Arithmetic{ .f = 10, .s = 10 }) });
+    try writer.print("Odin sincos: {} -> {any} \n", .{ 1337.0, sincos(1337.0) });
     try writer.print("---------- ODIN ENDS HERE ----------\n", .{});
 }
