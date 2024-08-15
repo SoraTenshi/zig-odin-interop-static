@@ -1,4 +1,7 @@
 **.lib
 **.o
 **.obj
-zig-*/**
+zig-cache
+.zig-cache
+zig-out
+

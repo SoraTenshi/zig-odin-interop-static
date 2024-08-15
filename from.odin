@@ -1,37 +1,38 @@
 package main
 
-import "core:runtime"
+import "base:runtime"
 import "core:fmt"
 import "core:math"
 
 SomeStruct :: struct {
-	string: cstring,
+	string:   cstring,
 	some_int: uintptr,
 }
 
 Arithmetic :: struct {
-	first: uintptr,
+	first:  uintptr,
 	second: uintptr,
 }
 
-@export
+@(export)
 print_some_info :: proc "c" (something: SomeStruct) {
 	context = runtime.default_context()
 
 	fmt.println("%s: %#X", something.string, something.some_int)
 }
 
-@export
+@(export)
 add_stuff :: proc "c" (lhs: uintptr, rhs: uintptr) -> uintptr {
 	return lhs + rhs
 }
 
-@export
+@(export)
 do_arithmetic :: proc "c" (a: Arithmetic) -> uintptr {
 	return a.first * a.second
 }
 
-@export
+@(export)
 sincos :: proc "c" (x: f32) -> (f32, f32) {
 	return math.sincos_f32(x)
 }
+
